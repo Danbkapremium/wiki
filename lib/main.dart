@@ -71,12 +71,31 @@ class ArticleView extends StatefulWidget {
 
 class _ArticleViewState extends State<ArticleView> {
   final ArticleViewModel viewModel = ArticleViewModel(ArticleModel());
+
   @override
   void initState() {
     super.initState();
     viewModel.fetchArticle();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Article"),
+      ),
+      body: Center(
+        child: ListenableBuilder(
+          listenable: viewModel,
+          builder: (context, _) {
+            return Container(); 
+          },
+        ),
+      ),
+    );
+  }
 }
+  
 
 class ArticleWidget extends StatelessWidget {
   final Summary summary;
